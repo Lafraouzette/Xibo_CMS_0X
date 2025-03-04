@@ -58,69 +58,21 @@ responsibility. Therefore you will need the following tools:
  - Docker
 
 
-## Clone the repository
 
-Create a folder in your development workspace and clone the repository. If you intend to make changes and submit
-pull requests please Fork us first and create a new branch.
+- composer install
 
-```shell
-git clone git@github.com:<your_id>/xibo-cms.git xibo-cms
-```
+- composer update
 
-### Branches
 
-We maintain the following branches. To contribute to Xibo please use the `develop` branch as your base.
-
-- kopff: Work in progress toward 4.2.x
-- develop: Bug fixes for 4.1.x
-- master: Currently 4.0
-- release40: Bug fixes for 4.0
-- release33: Bug fixes for 3.3
-- release23: Bug fixes for 2.3
-- release18: Archive of 1.8
-- release17: Archive of 1.7
-- release1.6.4: Archive of 1.6
-
-## Install dependencies
-
-Change into your new folder
-
-```sh
-cd xibo-cms
-```
-
-We recommend installing the dependencies via Docker, so that you are guarenteed consistent dependencies across 
-different development machines.
-
-### PHP dependencies
-
-```shell
-docker run --interactive --tty --volume ${PWD}:/app --volume ${env:USERPROFILE}/.composer:/tmp composer install
-```
-composer update
-
-This command also mounts the Composer `/tmp` folder into your home directory so that you can take advantage of
-Composer caching.
-
-### Website dependencies (webpack)
-
-If you have installed node locally:
-
-```shell
 npm install webpack -g
 npm install
 npm run build
-```
-### Mapped Volumes
+- npm audit pour voir si il existe des problemes , si oui npm audit fixe -force 
 
-The development version of Xibo expects the code base to be mapped into the container such that changes on the host
-are reflected in the container.
 
-However, the container itself creates some files, such as the twig cache and library uploads. These locations will need
-to be created and the container given access to them.
-
-The easiest way to do this is to make the `cache` and `library` folders and `chmod 777` them. Obviously this is not
-suitable for production, but you shouldn't be using these files for production (we have containers for that).
+- the container  creates some files, such as the twig cache and library uploads. These locations will need to be created and the container given access to them.
+- The easiest way to do this is to make the `cache` and `library` folders and `chmod 777` them. 
+- Obviously this is not suitable for production, but you shouldn't be using these files for production (we have containers for that).
 
 ### API Keys
 The API requires a pub/private RSA keypair and an encryption key to be provided. The docker entrypoint will create 
@@ -147,13 +99,9 @@ The production/CI containers add this file during the build process so that it i
 image.
 
 
-## Bring up the Containers
 
-Use Docker Compose to bring up the containers.
+- docker-compose up --build -d
 
-```sh
-docker-compose up --build -d
-```
 
 ## Login
 After the containers have come up you should be able to login with the details:

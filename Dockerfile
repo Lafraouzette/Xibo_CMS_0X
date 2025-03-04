@@ -118,11 +118,14 @@ RUN sed -i "s/error_reporting = .*$/error_reporting = E_ERROR | E_WARNING | E_PA
     sed -i "s/session.gc_divisor = .*$/session.gc_divisor = 100/" /etc/php/8.2/apache2/php.ini && \
     sed -i "s/allow_url_fopen = .*$/allow_url_fopen = Off/" /etc/php/8.2/apache2/php.ini && \
     sed -i "s/expose_php = .*$/expose_php = Off/" /etc/php/8.2/apache2/php.ini && \
-    sed -i "s/error_reporting = .*$/error_reporting = E_ERROR | E_WARNING | E_PARSE/" /etc/php/8.2/cli/php.ini && \
-    sed -i "s/session.gc_probability = .*$/session.gc_probability = 1/" /etc/php/8.2/cli/php.ini && \
-    sed -i "s/session.gc_divisor = .*$/session.gc_divisor = 100/" /etc/php/8.2/cli/php.ini && \
-    sed -i "s/allow_url_fopen = .*$/allow_url_fopen = Off/" /etc/php/8.2/cli/php.ini && \
-    sed -i "s/expose_php = .*$/expose_php = Off/" /etc/php/8.2/cli/php.ini
+    sed -i "s/max_execution_time = .*$/max_execution_time = 300/" /etc/php/8.2/apache2/php.ini && \
+    sed -i "s/memory_limit = .*$/memory_limit = 256M/" /etc/php/8.2/apache2/php.ini && \
+    sed -i "s/post_max_size = .*$/post_max_size = 2G/" /etc/php/8.2/apache2/php.ini && \
+    sed -i "s/upload_max_filesize = .*$/upload_max_filesize = 2G/" /etc/php/8.2/apache2/php.ini && \
+    sed -i "s/max_execution_time = .*$/max_execution_time = 300/" /etc/php/8.2/cli/php.ini && \
+    sed -i "s/memory_limit = .*$/memory_limit = 256M/" /etc/php/8.2/cli/php.ini && \
+    sed -i "s/post_max_size = .*$/post_max_size = 2G/" /etc/php/8.2/cli/php.ini && \
+    sed -i "s/upload_max_filesize = .*$/upload_max_filesize = 2G/" /etc/php/8.2/cli/php.ini
 
 # Capture the git commit for this build if we provide one
 ARG GIT_COMMIT=prod

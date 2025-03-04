@@ -15,7 +15,7 @@ services:
     networks:
       - cms_network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 30s
       retries: 3
       start_period: 30s
@@ -40,15 +40,16 @@ services:
     ports:
       - "80:80"
     environment:
+      CMS_SERVER_NAME: "localhost"
       CMS_DEV_MODE: "true"
       MYSQL_DATABASE: "cms"
-      MYSQL_HOST: "db"  
+      MYSQL_HOST: "db"
     depends_on:
       - db
     networks:
       - cms_network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
+      test: [ "CMD", "curl", "-f", "http://localhost" ]
       interval: 30s
       retries: 3
       start_period: 10s
@@ -56,11 +57,11 @@ services:
 
   memcached:
     image: memcached:alpine
-    command: memcached -m 64  
+    command: memcached -m 64
     networks:
       - cms_network
     healthcheck:
-      test: ["CMD", "memcached", "-h"]
+      test: [ "CMD", "memcached", "-h" ]
       interval: 30s
       retries: 3
       start_period: 10s

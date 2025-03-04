@@ -373,7 +373,12 @@ sed -i "s/;session.cookie_secure =.*$/session.cookie_secure = $CMS_PHP_COOKIE_SE
 echo "Configure Apache"
 
 # Configure Apache TimeOut
-sed -i "s/\bTimeout\b .*$/Timeout $CMS_APACHE_TIMEOUT/" /etc/apache2/apache2.conf
+sed -i "s/\bTimeout\b .*$/Timeout 30/" /etc/apache2/apache2.conf
+# Configure KeepAliveTimeout
+echo "KeepAliveTimeout 5" >> /etc/apache2/apache2.conf
+
+# Configure MaxKeepAliveRequests
+echo "MaxKeepAliveRequests 100" >> /etc/apache2/apache2.conf
 
 # Configure Indexes
 if [ "$CMS_APACHE_OPTIONS_INDEXES" == "true" ]
