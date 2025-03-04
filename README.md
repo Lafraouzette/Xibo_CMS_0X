@@ -113,14 +113,14 @@ P: `password`
 si ta lrreur Installation Error: Cannot write files into the Cache Folder.
 connect toi dans le conteneur web : docker exec -it ID bash , obtient id avec docker ps 
 et creer les dossier et affcter les permissions nessaisaire 
-mkdir -p /var/www/cms
-    mkdir -p /var/www/cms/library/temp 
-    mkdir -p /var/www/cms/cache 
-    mkdir -p /var/www/backup
+ mkdir -p /var/www/cms
+     mkdir -p /var/www/cms/library/temp 
+     mkdir -p /var/www/cms/cache 
+     mkdir -p /var/www/backup
     chmod -R 777 /var/www/cms
-chmod -R 777 /var/www/cms/library
-chmod -R 777 /var/www/cms/cache
-chmod -R 777 /var/www/backup
+ chmod -R 777 /var/www/cms/library
+ chmod -R 777 /var/www/cms/cache
+ chmod -R 777 /var/www/backup
 
 
 ## Translations
